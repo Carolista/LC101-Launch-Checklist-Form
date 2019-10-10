@@ -35,8 +35,6 @@ window.addEventListener("load", function() {
             alert("All fields required.");
             event.preventDefault();
         }
-        console.log(typeof Number(pilot));
-        console.log(typeof String(pilot));
 
         // Are the pilot's and co-pilot's names something other than alphabetic strings?
         let alphaRegEx = /^[a-zA-Z]+$/;
@@ -44,6 +42,7 @@ window.addEventListener("load", function() {
             alert("Oops! Please check that you have entered valid names for both pilot and copilot.");
             event.preventDefault();
         }
+        
         // Are the fuel level and cargo weight something other than numbers?
         if ( isNaN(Number(fuel.value)) || isNaN(Number(cargo.value)) ){
             alert("Oops! Please check that you have entered valid numbers for both fuel level and cargo weight.");
