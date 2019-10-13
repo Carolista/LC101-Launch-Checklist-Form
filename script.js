@@ -4,6 +4,17 @@ function randomize(max = 100, min = 0) {
 	return Math.floor(Math.random() * (max - min) + min);
 }
 
+// just being thorough
+function toTitleCase(str) {
+    if (typeof str.split(" ") !== "string") {
+        return str.toLowerCase().split(' ').map(function(word) {
+            return word.replace(word[0], word[0].toUpperCase());
+        }).join(' ');
+    } else {
+        return str.toLowerCase().replace(str[0],str[0].toUpperCase);
+    }
+}
+
 // LOAD PAGE
 
 window.addEventListener("load", function() {
@@ -70,7 +81,7 @@ window.addEventListener("load", function() {
         }
 
         // Are the pilot's and co-pilot's names something other than alphabetic strings?
-        let alphaRegEx = /^[a-zA-Z]+$/;
+        let alphaRegEx = /^[a-zA-Z +]+$/;
         if ( ! pilot.value.match(alphaRegEx) || ! copilot.value.match(alphaRegEx) ) {
             console.log("User tried to enter non-alphabetic name(s).");
             alert("Oops! Please check that you have entered valid names for both pilot and copilot.");
@@ -92,6 +103,8 @@ window.addEventListener("load", function() {
         if ( fieldsNotEmpty && namesAlpha && amountsNumbers ) {
 
             // NOW THAT DATA HAS BEEN VALIDATED...
+            pilot.value = toTitleCase(pilot.value);
+            copilot.value = toTitleCase(copilot.value);
             console.log(`${pilot.value} and ${copilot.value} are requesting to launch with ${fuel.value} gallons of fuel and ${cargo.value} pounds of cargo.`); 
 
             // Update shuttle requirements 
