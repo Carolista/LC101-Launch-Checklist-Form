@@ -1,4 +1,9 @@
 
+// for bonus mission
+function randomize(max = 100, min = 0) {
+	return Math.floor(Math.random() * (max - min) + min);
+}
+
 // LOAD PAGE
 
 window.addEventListener("load", function() {
@@ -11,7 +16,8 @@ window.addEventListener("load", function() {
         response.json().then( function(json) {
             // console.log(json);
             const div = document.getElementById("missionTarget");
-            let p = 2;
+            let p = randomize(json.length,0);
+            console.log(`Selected planet at index ${p}.`);
             div.innerHTML += `
                 <h2>Mission Destination</h2>
                     <ol>
